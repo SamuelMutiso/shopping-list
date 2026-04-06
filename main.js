@@ -5,23 +5,23 @@
 // SAVE LOCAL STORAGE
 
 //IM NOW SELECTING DOM ELEMENTS
-const addBtn = document.getElementById ("addBtn");
-const clearbtn = document.getElementById ("clearbtn");
-const itemInput = document.getElementById ("itemInput ");
-const itemprice = document.getElementById ("itemPrice");
-const list = document.getElementById ("shoppingList");
-const totaldisplay = document.getElementById ("total");
+const addBtn = document.getElementById("addBtn");
+const clearBtn = document.getElementById("clearBtn");
+const itemInput = document.getElementById("itemInput");
+const itemPrice = document.getElementById("itemPrice");
+const  listContainer= document.getElementById("shoppingList");
+const totaldisplay = document.getElementById("total");
 
 //shopping list array
 // starting with an empty array []
-let shoppinglist = JSON.parse(localStorage.getItem("shoppingList")) || [];
+let shoppingList = JSON.parse(localStorage.getItem("shoppingList")) || [];
 // i the -1 i will use it to track when im editing a new item or editing and old item
 let editIndex = -1;
 
 //3. The display function
 function displayList() {
     listContainer.innerHTML = ""; // CLEARING THE SCREEN BEFORE RE-DRAWING
-    shoppinglist.forEach((item, index) => {
+    shoppingList.forEach((item, index) => {
         // here im creating the card container
         const box = document.createElement("div");
         box.className = "item-box";
@@ -39,8 +39,8 @@ function displayList() {
         checkbox.type = "checkbox";
         checkbox.checked = item.purchased;
         checkbox.addEventListener("change", () =>{
-            shoppingList[index].purchsed = checkbox.checked;
-            updateDATA(); // for saving changes
+            shoppingList[index].purchased = checkbox.checked;
+            updateData(); // for saving changes
         })
 
         //now creating the edit button
@@ -48,7 +48,7 @@ function displayList() {
         editBtn.textContent = "Edit";
         editBtn.addEventListener("click", () => {
             itemInput.value = item.name; //putting name back in input
-            itemprice.value = item.price; //putting priice name back in input
+            itemPrice.value = item.price; //putting priice name back in input
             editIndex = index;            // remember which item ive edited
             addBtn.textContent = "Update Item"; // change button text
         });
@@ -64,20 +64,20 @@ function displayList() {
     } );
     
     // we now calculating the total cost using reduce()
-    const total = shoppinglist.reduce((acc, item)=> acc + item.price, 0);
+    const total = shoppingList.reduce((acc, item)=> acc + item.price, 0);
     totaldisplay. textContent = `KSH ${total}`;
 }
 
 // SAVING DATA INPUTTED BY USER
 function updateData(){
     localStorage.setItem("shoppingList", JSON.stringify(shoppingList));
-    displayList
+    displayList();
 }
 
 // THE ADD BUTTON LOGIC
 addBtn.addEventListener("click", ()=> {
     const name = itemInput.value.trim();
-    const price = parseFloat(itemprice.value);
+    const price = parseFloat(itemPrice.value);
 
     // stopping if the input is empty or price is not a number
     if (name === "" || isNaN(price) || price <= 0)  {
@@ -96,7 +96,7 @@ addBtn.addEventListener("click", ()=> {
     
     // clear inputs and refresh screen
     itemInput.value = "";
-    itemprice.value = "";
+    itemPrice.value = "";
     updateData();
 });
 
