@@ -4,14 +4,22 @@
 // BUTTONS
 // SAVE LOCAL STORAGE
 
-//DOM ELEMENTS
+//IM NOW SELECTING DOM ELEMENTS
 const addBtn = document.getElementById ("addBtn");
 const clearbtn = document.getElementById ("clearbtn");
 const itemInput = document.getElementById ("itemInput ");
-const itemprice = document.getElementById ("itemprice");
-const list = document.getElementById ("shoppinglist");
+const itemprice = document.getElementById ("itemPrice");
+const list = document.getElementById ("shoppingList");
 const totaldisplay = document.getElementById ("total");
+
 //shopping list array
-let shoppinglist[];
+// starting with an empty array []
+let shoppinglist = JSON.parse(localStorage.getItem("shoppingList")) || [];
+// i the -1 i will use it to track when im editing a new item or editing and old item
+let editIndex = -1;
 
+//3. The display function
+function displayList() {
+    listContainer.innerHTML = "";
 
+}

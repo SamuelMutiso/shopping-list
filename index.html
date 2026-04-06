@@ -7,21 +7,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!- - header - - >
     <header>
-        <h1>INTERACTIVE SHOPPING LIST</h1>
+        <h1>SAMS SHOPPING LIST</h1>
     </header>
-    <!- - main - - >
+
     <div class="Main">
 <div class="shopping-list">
     <! input section - - >
     <input type="text" id="itemInput" placeholder="Item name" required>
-    <input type="number" id="itemprice" placeholder="price" required>
+    <input type="number" id="itemPrice" placeholder="Price" required>
     <button id="addBtn"></button>
 </div>
 <!- - list container - ->
-<ul id="shoppinglist"></ul>
+<div id="shoppingList"></div>
 <!- - clearbutton is hidden intia;;y - - >
+<div class="footer-controls">
 <button id="clearBtn" style="display: none;">Clear list</button>
 
 <p> Total:  <span id="total">0</span></p>
