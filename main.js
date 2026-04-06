@@ -100,5 +100,8 @@ addBtn.addEventListener("click", ()=> {
     updateData();
 });
 
-// start the app!
+clearBtn.addEventListener("click" , () => {
+    shoppingList = [];
+    updateData();
+})
 displayList();
