@@ -20,6 +20,53 @@ let editIndex = -1;
 
 //3. The display function
 function displayList() {
-    listContainer.innerHTML = "";
+    listContainer.innerHTML = ""; // CLEARING THE SCREEN BEFORE RE-DRAWING
+    shoppinglist.forEach((item, index) => {
+        // here im creating the card container
+        const box = document.createElement("div");
+        box.className = "item-box";
+
+        // im now creating the item name and price text
+        const nameDiv = document.createElement("div")
+        nameDiv.className = item.purchased ? "item-name purchased" : "item-name";
+        nameDiv.textContent = item.name;
+
+        const priceDiv = document.createElement("div");
+        priceDiv.textContent = `${item.price}`;
+
+        // now creating the check box
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = item.purchased;
+        checkbox.addEventListener("change", () =>{
+            shoppingList[index].purchsed = checkbox.checked;
+            updateDATA(); // for saving changes
+        })
+
+        //now creating the edit button
+        const editBtn = document.createElement("button");
+        editBtn.textContent = "Edit";
+        editBtn.addEventListener("click", () => {
+            itemInput.value = item.name; //putting name back in input
+            itemprice.value = item.price; //putting priice name back in input
+            editIndex = index;            // remember which item ive edited
+            addBtn.textContent = "Update Item"; // change button text
+        });
+
+        // we now put everything inside the card
+        box.appendChild(nameDiv);
+        box.appendChild(priceDiv);
+        box.appendChild(checkbox);
+        box.append(" Got it?");
+        box.appendChild(editBtn);
+
+        listContainer.appendChild(box);  // adding card to the screen
+    } );
+    
+    // we now calculating the total cost using reduce()
+
+        
+     
+    
 
 }
