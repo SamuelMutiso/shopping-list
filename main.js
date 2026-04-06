@@ -64,9 +64,41 @@ function displayList() {
     } );
     
     // we now calculating the total cost using reduce()
-
-        
-     
-    
-
+    const total = shoppinglist.reduce((acc, item)=> acc + item.price, 0);
+    totaldisplay. textContent = `KSH ${total}`;
 }
+
+// SAVING DATA INPUTTED BY USER
+function updateData(){
+    localStorage.setItem("shoppingList", JSON.stringify(shoppingList));
+    displayList
+}
+
+// THE ADD BUTTON LOGIC
+addBtn.addEventListener("click", ()=> {
+    const name = itemInput.value.trim();
+    const price = parseFloat(itemprice.value);
+
+    // stopping if the input is empty or price is not a number
+    if (name === "" || isNaN(price) || price <= 0)  {
+        alert("Enter a valid name and price!");
+        return;
+    }
+    if (editIndex > -1) {
+        // if we were editing it should update that specific item
+        shoppingList[editIndex] = {name,price,purchased: false};
+        editIndex = -1;
+        addBtn.textContent = "Add to List";
+    } else {
+        // if otherwise it adds a new item to the array
+        shoppingList.push({name,price,purchased: false})
+    }
+    
+    // clear inputs and refresh screen
+    itemInput.value = "";
+    itemprice.value = "";
+    updateData();
+});
+
+// start the app!
+displayList();
