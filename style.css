@@ -1,0 +1,38 @@
+body {
+    font-family: sans-serif;
+    background-color: linear-gradient(135deg, #66733a 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+}
+
+/* the input section box */
+.input-section {
+    background: whitesmoke;
+    padding: 25px;
+    border-radius: 15px;
+    /* ill add a shadow to make the bo pop out to be visible well */
+    display: flex;
+    gap: 10px;
+}
+
+#shoppingList {
+    display: flex;
+    flex-wrap: wrap; /* this allows that card to jump to the next line */
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.item-box{
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    width 220px;
+    transition:tranform 0.3s;
+}
+
+
+
